@@ -1,2 +1,3 @@
-# FRC-RoboWebserver
-The webserver containing node data for the robo rio server. 
+# iLite Robot Server
+### Getting Started
+  * [Download and install the latest version of NodeJS](https://nodejs.org/en/) 
