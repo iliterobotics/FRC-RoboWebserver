@@ -1,6 +1,8 @@
 var express = require("express");
 var mongoose = require('mongoose');
-var config = require('./config.js');
+var routes = require('./routes/robot.js');
 var app = express();
+
+app.use(routes);
 
 app.listen(process.env.PORT || 8083);
