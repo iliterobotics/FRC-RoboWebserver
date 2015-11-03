@@ -7,15 +7,15 @@ module.exports.connect = function() {
     var db = mongoose.connection;
     db.on('error', console.error.bind(console, 'mongo connection error:'));
     db.once('open', function (callback) {
-
+		
     });
 
 };
 
-module.exports.save = function(object) {
-
+module.exports.save = function(collection, object) {
+	
 };
 
-module.exports.get = function() {
-
-}
+module.exports.get = function(collection, id) {
+	
+};
