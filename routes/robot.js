@@ -12,6 +12,12 @@ Router.post('/', function(req, res) {
 
     }
 	
+	db.save(robotData);
+	
+});
+
+Router.get('/', function(req, res){
+	
 });
 
 module.exports = Router;
