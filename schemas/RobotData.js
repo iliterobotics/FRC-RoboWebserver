@@ -9,7 +9,10 @@ db.once('open', function(){
 		is: Boolean
 	});
 	var Test = mongoose.model('Test', testSchema);
-	module.exports = {Test : Test};
+	module.exports.Test = Test;
+	module.exports.ntest = function(object){
+		return new Test(object);
+	};
 });
 
 mongoose.connect('mongodb://127.0.0.1/test');

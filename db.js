@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var config = require('./config.js');
+var schemas = require('./schemas/RobotData.js');
 
 module.exports.connect = function() {
     mongoose.connect(config.mongoose_uri);
@@ -13,9 +14,19 @@ module.exports.connect = function() {
 };
 
 module.exports.save = function(collection, object) {
-	
+	if(collection === 'test') {
+		var test = new schemas.ntest(object);
+		test.save(function(err, test){
+			if(err) console.error(err);
+		});
+	}
 };
 
-module.exports.get = function(collection, id) {
-	
+module.exports.get = function(collection, res) {
+	schemas.Test.find(function(err, docs){
+		if(err) console.error(err);
+		if(docs){
+			res.send({docs : docs});
+		}
+	});
 };
