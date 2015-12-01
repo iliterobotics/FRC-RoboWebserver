@@ -14,16 +14,14 @@ module.exports.connect = function() {
 };
 
 module.exports.save = function(collection, object) {
-	if(collection === 'test') {
-		var test = new schemas.ntest(object);
-		test.save(function(err, test){
+    var schema = new schemas['n' + collection](object);
+		schema.save(function(err, test){
 			if(err) console.error(err);
 		});
-	}
 };
 
 module.exports.get = function(collection, res) {
-	schemas.Test.find(function(err, docs){
+	schemas[collection].find(function(err, docs){
 		if(err) console.error(err);
 		if(docs){
 			res.send({docs : docs});
