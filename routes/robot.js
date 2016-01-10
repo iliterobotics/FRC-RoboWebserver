@@ -3,6 +3,15 @@ var db = require('../db.js');
 var logger = require('../logger.js');
 var clientQueue = require('./client_queue.js');
 var listenedCollections = {};
+var RobotData = require('../schemas/RobotData');
+
+Router.post('/add_schema/:name', function(req, res){
+    var timestamp = req.body.timestamp;
+    var robotData = req.body.robotData;
+    console.log('I\'ve just been sent a schema');
+    RobotData.addSchema(req.params.name, robotData);
+    res.end();
+});
 
 Router.post('/:collection', function(req, res) {
     var timestamp = req.body.timestamp;
