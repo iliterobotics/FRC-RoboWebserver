@@ -24,8 +24,8 @@ exports.logGetObject = function(collection, id){
 	});
 }
 
-exports.logPostDocument = function(collection, object){
-    var logEntry = generateDateString() + ' --- Posting object w/ id:' + object._id + ' to collection:' + collection;
+exports.logPostDocument = function(collection, id){
+    var logEntry = generateDateString() + ' --- Posting object w/ id:' + id + ' to collection:' + collection;
 	fs.appendFile('./logs/post.log', logEntry + '\r\n', function(err){
 		if(err){
 			console.log('write error to post.log: ' + err);

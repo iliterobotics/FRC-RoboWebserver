@@ -20,17 +20,15 @@ db.once('open', function(){
 });
 
 module.exports.addSchema = function(colname, object){
-    mongoose.connection.db.listCollections().next(function(err, collinfo) {
-        console.log(collinfo);
-        //if (!collinfo) {
+    if (!Schemas[colname]) {
             Schemas[colname] = object;
+            console.log(colname)
             var collection = mongoose.model(colname, Schemas[colname]);
             module.exports[colname] = collection;
             module.exports['n' + colname] = function(obj){
-                return new collection(obj);
-            }
-        //}
-    });
+            return new collection(obj);
+        }
+    }
 }
 module.exports.refreshSchemas = function(){
     for(var key in Schemas){
