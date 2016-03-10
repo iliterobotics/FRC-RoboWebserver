@@ -14,6 +14,7 @@ module.exports.connect = function() {
 };
 
 module.exports.save = function(collection, object, id) {
+	console.log(object);
     schemas[collection].find({id:id}, function(err, docs){
         var replaced = false;
         if(docs){
