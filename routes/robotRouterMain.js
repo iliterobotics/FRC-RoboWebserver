@@ -59,6 +59,7 @@ Router.get('/:collection', function(req, res) {
             listenedCollections[req.params.collection] = [];
         }
         listenedCollections[req.params.collection].push({response:res, ip:req.connection.remoteAddress});
+        db.get(req.params.collection, res);
     }
     clientQueue.addClientQueue(req.params.collection, req.connection.remoteAddress);
 });
@@ -75,6 +76,7 @@ Router.get('/:collection/:id', function(req, res) {
         }
         listenedCollections[req.params.collection + req.params.id].push({response:res, ip:req.connection.remoteAddress});
         logger.logGetObject(req.params.collection, req.params.id);
+	db.getById(req.params.collection, req.params.id, res);
     }
     clientQueue.addClientQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
 });
