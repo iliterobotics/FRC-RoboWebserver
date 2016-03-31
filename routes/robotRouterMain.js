@@ -64,7 +64,8 @@ Router.get('/:collection', function(req, res) {
     clientQueue.addClientQueue(req.params.collection, req.connection.remoteAddress);
 });
 Router.get('/:collection/:id', function(req, res) {
-    var queue = clientQueue.getClinetQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
+    logger.logGetObject(req.params.collection, req.params.id);
+	var queue = clientQueue.getClinetQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
 	if(queue && queue.length > 0){
 		console.log('flushing queue for ' + req.params.collection + " " + req.connection.remoteAddress);
 		res.send('{docs:' + JSON.stringify(queue) + '}');
@@ -75,8 +76,7 @@ Router.get('/:collection/:id', function(req, res) {
             listenedCollections[req.params.collection + req.params.id] = [];
         }
         listenedCollections[req.params.collection + req.params.id].push({response:res, ip:req.connection.remoteAddress});
-        logger.logGetObject(req.params.collection, req.params.id);
-	db.getById(req.params.collection, req.params.id, res);
+		db.getById(req.params.collection, req.params.id, res);
     }
     clientQueue.addClientQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
 });
