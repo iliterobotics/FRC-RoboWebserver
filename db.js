@@ -53,7 +53,7 @@ module.exports.get = function(collection, res) {
 };
 
 module.exports.getById = function(collection, id, res){
-    console.log(collection);
+    console.log(collection, id);
 	schemas[collection].find({id:id}, function(err, docs){
 		if(err) console.error(err);
 		if(docs){

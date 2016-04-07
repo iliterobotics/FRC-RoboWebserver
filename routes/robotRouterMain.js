@@ -64,7 +64,8 @@ Router.get('/:collection', function(req, res) {
     clientQueue.addClientQueue(req.params.collection, req.connection.remoteAddress);
 });
 Router.get('/:collection/:id', function(req, res) {
-    var queue = clientQueue.getClinetQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
+    logger.logGetObject(req.params.collection, req.params.id);
+	var queue = clientQueue.getClinetQueue(req.params.collection, req.params.id, req.connection.remoteAddress);
 	if(queue && queue.length > 0){
 		console.log('flushing queue for ' + req.params.collection + " " + req.connection.remoteAddress);
 		res.send('{docs:' + JSON.stringify(queue) + '}');
